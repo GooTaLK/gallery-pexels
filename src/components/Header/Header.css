@@ -1,0 +1,50 @@
+.Header {
+  background-color: var(--black-pexels);
+  color: white;
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.Header-logo {
+  font-weight: 400;
+  font-family: 'ABeeZee', -apple-system, 'Roboto', sans-serif;
+  flex-grow: 1;
+}
+
+.Header-logo h1 {
+  margin: 0;
+  font-size: var(--logo-font-size);
+}
+
+@media (min-width: 575.98px) {
+  :root {
+    --logo-font-size: 40px;
+  }
+}
+
+.Header-search_wrapper {
+  flex-grow: 2;
+  text-align: center;
+}
+
+.Header-search_input {
+  font-size: 14px;
+  color: var(--white-gray);
+  background-color: #00000060;
+  padding: 1em 1.4em;
+  border: none;
+  border-radius: 6px;
+  width: clamp(140px, 100%, 500px);
+}
+
+.Header-search_input:focus {
+  outline: none;
+  color: black;
+  background-color: var(--white-gray);
+}
+
+.Header-search_input::placeholder {
+  color: var(--gray-light);
+}
