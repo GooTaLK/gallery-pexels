@@ -1,21 +1,19 @@
 .Header {
   background-color: var(--black-pexels);
   color: white;
-  padding: 1em 2em;
+  padding: 1em min(8vw, 5em);
   display: flex;
   align-items: center;
-  gap: 2em;
 }
 
 .Header-logo {
-  font-weight: 400;
   font-family: 'ABeeZee', -apple-system, 'Roboto', sans-serif;
-  flex-grow: 1;
 }
 
 .Header-logo h1 {
   margin: 0;
   font-size: var(--logo-font-size);
+  user-select: none;
 }
 
 @media (min-width: 575.98px) {
@@ -25,8 +23,17 @@
 }
 
 .Header-search_wrapper {
-  flex-grow: 2;
+  flex-grow: 1;
   text-align: center;
+  margin-left: 1em;
+  margin-right: 0.8em;
+}
+
+@media (min-width: 575.98px) {
+  .Header-search_wrapper {
+    margin-left: 4em;
+    margin-right: 2em;
+  }
 }
 
 .Header-search_input {
@@ -36,7 +43,7 @@
   padding: 1em 1.4em;
   border: none;
   border-radius: 6px;
-  width: clamp(140px, 100%, 500px);
+  width: clamp(100px, 100%, 600px);
 }
 
 .Header-search_input:focus {
@@ -52,4 +59,8 @@
 .Header-pexels_link {
   width: 45px;
   padding-top: 2px;
+}
+
+.Header-pexels_link img {
+  width: 100%;
 }
