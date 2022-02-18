@@ -48,3 +48,8 @@
 .Header-search_input::placeholder {
   color: var(--gray-light);
 }
+
+.Header-pexels_link {
+  width: 45px;
+  padding-top: 2px;
+}
