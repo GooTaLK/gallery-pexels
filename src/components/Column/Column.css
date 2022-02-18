@@ -1,0 +1,38 @@
+.Column {
+  flex-basis: calc(100% / var(--cols-number));
+}
+
+.Column figure {
+  margin: 0;
+  margin-bottom: 1em;
+  background-color: var(--black-gray);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.Column figcaption {
+  font-size: 13px;
+  color: var(--white-gray);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3.7em;
+  padding-top: 0.7em;
+  padding-bottom: 1em;
+  text-align: center;
+  background-color: #00000080;
+  transition: height 0.3s ease-in-out;
+}
+
+.Column figure:hover figcaption {
+  height: 100%;
+}
+
+.Column img {
+  width: 100%;
+}

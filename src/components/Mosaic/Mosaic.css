@@ -1,0 +1,28 @@
+.Mosaic {
+  width: 100%;
+  padding: 2rem 1rem 0 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+@media (orientation: landscape) {
+  .Mosaic {
+    padding: 3.5rem 4rem 0 4rem;
+  }
+}
+
+.Mosaic--cols_1 {
+  --cols-number: 1;
+}
+
+.Mosaic--cols_2 {
+  --cols-number: 2;
+}
+
+.Mosaic--cols_3 {
+  --cols-number: 3;
+}
+
+.Mosaic--cols_4 {
+  --cols-number: 4;
+}
