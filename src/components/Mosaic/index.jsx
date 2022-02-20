@@ -232,6 +232,7 @@ export const Mosaic = () => {
             items={columns[col]}
             colNumber={count + 1}
             columnsNumber={columns.size}
+            onClickItem={(id) => null}
             key={`col--${count}`}
           />
         )
