@@ -173,14 +173,14 @@ const COLUMNS_BETWEEN_SMALL_AND_LONG_SCREEN = 3
 const COLUMNS_BETWEEN_VERY_SMALL_AND_SMALL_SCREEN = 2
 const COLUMNS_IN_VERY_SMALL_SCREEN = 1
 
-function loadItems ({ reference = null, newItems, columnsNumber }) {
+function loadItems ({ reference = null, newItems, columnsSize, prefix = 'col' }) {
   const columns = reference ? { ...reference } : {}
   let count = 1
 
   newItems.forEach((itemData) => {
-    columns[`col${count}`] === undefined && (columns[`col${count}`] = [])
-    columns[`col${count}`].push(itemData)
-    count < columnsNumber ? count++ : (count = 1)
+    columns[`${prefix}${count}`] === undefined && (columns[`${prefix}${count}`] = [])
+    columns[`${prefix}${count}`].push(itemData)
+    count < columnsSize ? count++ : (count = 1)
   })
 
   return columns
@@ -200,7 +200,7 @@ export const Mosaic = () => {
   useEffect(() => {
     function loadColumns (number) {
       if (columns.size === number) return
-      setColumns({ ...loadItems({ newItems: imagesTemplate, columnsNumber: number }), size: number })
+      setColumns({ ...loadItems({ newItems: imagesTemplate, columnsSize: number }), size: number })
     }
 
     function chargeColumns (width) {
