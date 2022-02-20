@@ -189,13 +189,7 @@ function loadItems ({ reference = null, newItems, columnsSize, prefix = 'col' })
 export const Mosaic = () => {
   const mosaic = useRef()
 
-  const [columns, setColumns] = useState({
-    col1: [],
-    col2: [],
-    col3: [],
-    col4: [],
-    size: 0
-  })
+  const [columns, setColumns] = useState({ size: 0 })
 
   useEffect(() => {
     function loadColumns (number) {
@@ -225,36 +219,32 @@ export const Mosaic = () => {
     resizeObserver.observe(mosaic.current)
   }, [])
 
+  function getColumns () {
+    if (columns.size === 0) return null
+
+    const columnsArray = []
+    let count = 0
+
+    for (const col in columns) {
+      if (col !== 'size') {
+        columnsArray.push(
+          <Column
+            items={columns[col]}
+            colNumber={count + 1}
+            columnsNumber={columns.size}
+            key={`col--${count}`}
+          />
+        )
+        count++
+      }
+    }
+
+    return columnsArray.length !== 0 ? columnsArray : null
+  }
+
   return (
     <div className={`Mosaic Mosaic--cols_${columns.size}`} ref={mosaic}>
-      {columns.col1?.length &&
-        <Column
-          items={columns.col1}
-          colNumber={1}
-          columnsNumber={columns.size}
-        />
-      }
-      {columns.col2?.length &&
-        <Column
-          items={columns.col2}
-          colNumber={2}
-          columnsNumber={columns.size}
-        />
-      }
-      {columns.col3?.length &&
-        <Column
-          items={columns.col3}
-          colNumber={3}
-          columnsNumber={columns.size}
-        />
-      }
-      {columns.col4?.length &&
-        <Column
-          items={columns.col4}
-          colNumber={4}
-          columnsNumber={columns.size}
-        />
-      }
+      { getColumns() }
     </div>
   )
 }
