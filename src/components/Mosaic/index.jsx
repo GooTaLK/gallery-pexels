@@ -109,6 +109,11 @@ const imagesTemplate = [
     alt: 'Generic alt'
   },
   {
+    id: 1020,
+    source: 'https://picsum.photos/500/400',
+    alt: 'Generic alt'
+  },
+  {
     id: 1021,
     source: 'https://picsum.photos/200/300',
     alt: 'Generic alt'
