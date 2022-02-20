@@ -165,6 +165,14 @@ const imagesTemplate = [
   }
 ]
 
+const LONG_SCREEN = 1040
+const SMALL_SCREEN = 560
+const VERY_SMALL_SCREEN = 360
+const COLUMNS_IN_LONG_SCREEN = 4
+const COLUMNS_BETWEEN_SMALL_AND_LONG_SCREEN = 3
+const COLUMNS_BETWEEN_VERY_SMALL_AND_SMALL_SCREEN = 2
+const COLUMNS_IN_VERY_SMALL_SCREEN = 1
+
 function loadItems ({ reference = null, newItems, columnsNumber }) {
   const columns = reference ? { ...reference } : {}
   let count = 1
@@ -196,10 +204,10 @@ export const Mosaic = () => {
     }
 
     function chargeColumns (width) {
-      if (width > 1040) loadColumns(4)
-      if (width > 560 && width <= 1040) loadColumns(3)
-      if (width > 360 && width <= 560) loadColumns(2)
-      if (width <= 360) loadColumns(1)
+      if (width > LONG_SCREEN) loadColumns(COLUMNS_IN_LONG_SCREEN)
+      if (width > SMALL_SCREEN && width <= LONG_SCREEN) loadColumns(COLUMNS_BETWEEN_SMALL_AND_LONG_SCREEN)
+      if (width > VERY_SMALL_SCREEN && width <= SMALL_SCREEN) loadColumns(COLUMNS_BETWEEN_VERY_SMALL_AND_SMALL_SCREEN)
+      if (width <= VERY_SMALL_SCREEN) loadColumns(COLUMNS_IN_VERY_SMALL_SCREEN)
     }
 
     const resizeObserver = new window.ResizeObserver((entries) => {
