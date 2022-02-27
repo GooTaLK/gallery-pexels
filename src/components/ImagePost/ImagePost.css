@@ -1,0 +1,46 @@
+.ImagePost {
+  display: flex;
+  flex-direction: column;
+  width: max(320px, 90vw);
+  height: 90vh;
+  overflow: auto;
+}
+
+.ImagePost-image {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  height: clamp(400px, 80vh, 1600px);
+  background-color: var(--black-pexels);
+  border-radius: 4px 4px 0 0;
+}
+
+.ImagePost-image img {
+  object-fit: contain;
+  width: 95%;
+  height: 78vh;
+}
+
+.ImagePost-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px 30px;
+  gap: 8px;
+  background-color: white;
+  color: black;
+  border-radius: 0 0 4px 4px;
+}
+
+.ImagePost-info-title {
+  font-size: 24px;
+  flex-grow: 1;
+}
+
+.ImagePost-info-title i {
+  font-style: normal;
+}
+
+.ImagePost-info-photographer {
+  font-size: 16px;
+}
