@@ -11,157 +11,219 @@ const imagesTemplate = [
   {
     id: 1000,
     source: 'https://picsum.photos/500/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 500,
+    height: 300
   },
   {
     id: 1001,
     source: 'https://picsum.photos/200/230',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 230
   },
   {
     id: 1002,
     source: 'https://picsum.photos/200/250',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 250
   },
   {
     id: 1003,
     source: 'https://picsum.photos/200/400',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 400
   },
   {
     id: 1004,
     source: 'https://picsum.photos/200/200',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 200
   },
   {
     id: 1005,
     source: 'https://picsum.photos/200/210',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 210
   },
   {
     id: 1006,
     source: 'https://picsum.photos/200/280',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 200
   },
   {
     id: 1007,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 230
   },
   {
     id: 1008,
     source: 'https://picsum.photos/300/500',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 300,
+    height: 500
   },
   {
     id: 1009,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1010,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1011,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1012,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1013,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1014,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1015,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1016,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1017,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1018,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1019,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1020,
     source: 'https://picsum.photos/500/400',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1021,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    source: 'https://picsum.photos/400/300',
+    alt: 'Generic alt',
+    width: 400,
+    height: 300
   },
   {
     id: 1022,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1023,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1024,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1025,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1026,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1027,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1028,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1029,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   },
   {
     id: 1030,
     source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt'
+    alt: 'Generic alt',
+    width: 200,
+    height: 300
   }
 ]
 
