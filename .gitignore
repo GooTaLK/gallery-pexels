@@ -4,4 +4,4 @@ dist
 dist-ssr
 *.local
 
-apiKeyPexels.json
+*.hifi.*
