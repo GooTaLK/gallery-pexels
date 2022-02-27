@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import './Mosaic.css'
 
 import { Column } from '../Column'
+import { Modal } from '../Modal'
+import { ImagePost } from '../ImagePost'
 
 /**
  * TEMPORAL DATA BASE 👇
@@ -252,6 +254,7 @@ export const Mosaic = () => {
   const mosaic = useRef()
 
   const [columns, setColumns] = useState({ size: 0 })
+  const [modal, setModal] = useState({ open: false, childrenProps: {} })
 
   useEffect(() => {
     function loadColumns (number) {
@@ -281,6 +284,11 @@ export const Mosaic = () => {
     resizeObserver.observe(mosaic.current)
   }, [])
 
+  function showImage (id) {
+    const childrenProps = imagesTemplate.find(({ id: imageId }) => id === imageId)
+    setModal({ childrenProps, open: true })
+  }
+
   function getColumns () {
     if (columns.size === 0) return null
 
@@ -294,7 +302,7 @@ export const Mosaic = () => {
             items={columns[col]}
             colNumber={count + 1}
             columnsNumber={columns.size}
-            onClickItem={(id) => null}
+            onClickItem={showImage}
             key={`col--${count}`}
           />
         )
@@ -307,7 +315,19 @@ export const Mosaic = () => {
 
   return (
     <div className={`Mosaic Mosaic--cols_${columns.size}`} ref={mosaic}>
-      { getColumns() }
+      {
+        getColumns()
+      }
+      <Modal open={modal.open} toClose={() => setModal({ open: false, childrenProps: null })}>
+        <ImagePost
+          url={modal.childrenProps?.url ?? modal.childrenProps?.source}
+          source={modal.childrenProps?.source}
+          alt={modal.childrenProps?.alt}
+          width={modal.childrenProps?.width}
+          height={modal.childrenProps?.height}
+          photographer={{ name: 'Photographer', url: '/' }}
+        />
+      </Modal>
     </div>
   )
 }
