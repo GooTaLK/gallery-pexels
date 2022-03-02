@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 
 import './Mosaic.css'
 
@@ -6,238 +6,26 @@ import { Column } from '../Column'
 import { Modal } from '../Modal'
 import { ImagePost } from '../ImagePost'
 
-/**
- * TEMPORAL DATA BASE 👇
- */
-const imagesTemplate = [
-  {
-    id: 1000,
-    source: 'https://picsum.photos/500/300',
-    alt: 'Generic alt',
-    width: 500,
-    height: 300
-  },
-  {
-    id: 1001,
-    source: 'https://picsum.photos/200/230',
-    alt: 'Generic alt',
-    width: 200,
-    height: 230
-  },
-  {
-    id: 1002,
-    source: 'https://picsum.photos/200/250',
-    alt: 'Generic alt',
-    width: 200,
-    height: 250
-  },
-  {
-    id: 1003,
-    source: 'https://picsum.photos/200/400',
-    alt: 'Generic alt',
-    width: 200,
-    height: 400
-  },
-  {
-    id: 1004,
-    source: 'https://picsum.photos/200/200',
-    alt: 'Generic alt',
-    width: 200,
-    height: 200
-  },
-  {
-    id: 1005,
-    source: 'https://picsum.photos/200/210',
-    alt: 'Generic alt',
-    width: 200,
-    height: 210
-  },
-  {
-    id: 1006,
-    source: 'https://picsum.photos/200/280',
-    alt: 'Generic alt',
-    width: 200,
-    height: 200
-  },
-  {
-    id: 1007,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 230
-  },
-  {
-    id: 1008,
-    source: 'https://picsum.photos/300/500',
-    alt: 'Generic alt',
-    width: 300,
-    height: 500
-  },
-  {
-    id: 1009,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1010,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1011,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1012,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1013,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1014,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1015,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1016,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1017,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1018,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1019,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1020,
-    source: 'https://picsum.photos/500/400',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1021,
-    source: 'https://picsum.photos/400/300',
-    alt: 'Generic alt',
-    width: 400,
-    height: 300
-  },
-  {
-    id: 1022,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1023,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1024,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1025,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1026,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1027,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1028,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1029,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  },
-  {
-    id: 1030,
-    source: 'https://picsum.photos/200/300',
-    alt: 'Generic alt',
-    width: 200,
-    height: 300
-  }
-]
+const screen = {
+  LONG: 1040,
+  SMALL: 560,
+  VERY_SMALL: 360
+}
+const columnsQuantity = {
+  IN_LONG_SCREEN: 4,
+  BETWEEN_SMALL_AND_LONG_SCREEN: 3,
+  BETWEEN_VERY_SMALL_AND_SMALL_SCREEN: 2,
+  IN_VERY_SMALL_SCREEN: 1
+}
 
-const LONG_SCREEN = 1040
-const SMALL_SCREEN = 560
-const VERY_SMALL_SCREEN = 360
-const COLUMNS_IN_LONG_SCREEN = 4
-const COLUMNS_BETWEEN_SMALL_AND_LONG_SCREEN = 3
-const COLUMNS_BETWEEN_VERY_SMALL_AND_SMALL_SCREEN = 2
-const COLUMNS_IN_VERY_SMALL_SCREEN = 1
+function getColumnsNumber (width) {
+  if (width > screen.LONG) return columnsQuantity.IN_LONG_SCREEN
+  if (width > screen.SMALL && width <= screen.LONG) return columnsQuantity.BETWEEN_SMALL_AND_LONG_SCREEN
+  if (width > screen.VERY_SMALL && width <= screen.SMALL) return columnsQuantity.BETWEEN_VERY_SMALL_AND_SMALL_SCREEN
+  if (width <= screen.VERY_SMALL) return columnsQuantity.IN_VERY_SMALL_SCREEN
+}
 
-function loadItems ({ reference = null, newItems, columnsSize, prefix = 'col' }) {
+function addItems ({ reference = null, newItems = [], columnsSize, prefix = 'col' }) {
   const columns = reference ? { ...reference } : {}
   let count = 1
 
@@ -250,42 +38,32 @@ function loadItems ({ reference = null, newItems, columnsSize, prefix = 'col' })
   return columns
 }
 
-export const Mosaic = () => {
+export const Mosaic = ({ newImages }) => {
+  if (!newImages) return null
+
   const mosaic = useRef()
 
   const [columns, setColumns] = useState({ size: 0 })
   const [modal, setModal] = useState({ open: false, childrenProps: {} })
 
-  useEffect(() => {
-    function loadColumns (number) {
-      if (columns.size === number) return
-      setColumns({ ...loadItems({ newItems: imagesTemplate, columnsSize: number }), size: number })
-    }
+  function addColumns (width, isNew = true) {
+    const columnsNumber = getColumnsNumber(width)
 
-    function chargeColumns (width) {
-      if (width > LONG_SCREEN) loadColumns(COLUMNS_IN_LONG_SCREEN)
-      if (width > SMALL_SCREEN && width <= LONG_SCREEN) loadColumns(COLUMNS_BETWEEN_SMALL_AND_LONG_SCREEN)
-      if (width > VERY_SMALL_SCREEN && width <= SMALL_SCREEN) loadColumns(COLUMNS_BETWEEN_VERY_SMALL_AND_SMALL_SCREEN)
-      if (width <= VERY_SMALL_SCREEN) loadColumns(COLUMNS_IN_VERY_SMALL_SCREEN)
-    }
+    if (!isNew && columnsNumber === columns.size) return
+    const ref = isNew ? columns : null
 
-    const resizeObserver = new window.ResizeObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.contentBoxSize) {
-          const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize
-          chargeColumns(contentBoxSize.inlineSize)
-        } else {
-          chargeColumns(entry.contentRect.width)
-        }
-      }
+    setColumns({
+      ...addItems({
+        reference: ref,
+        newItems: newImages,
+        columnsSize: columnsNumber
+      }),
+      size: columnsNumber
     })
+  }
 
-    chargeColumns(mosaic.current.offsetWidth)
-    resizeObserver.observe(mosaic.current)
-  }, [])
-
-  function showImage (id) {
-    const childrenProps = imagesTemplate.find(({ id: imageId }) => id === imageId)
+  function handleShowImage (id, colNumber) {
+    const childrenProps = columns[`col${colNumber}`].find(({ id: imageId }) => id === imageId)
     setModal({ childrenProps, open: true })
   }
 
@@ -293,16 +71,16 @@ export const Mosaic = () => {
     if (columns.size === 0) return null
 
     const columnsArray = []
-    let count = 0
+    let count = 1
 
     for (const col in columns) {
       if (col !== 'size') {
         columnsArray.push(
           <Column
             items={columns[col]}
-            colNumber={count + 1}
+            colNumber={count}
             columnsNumber={columns.size}
-            onClickItem={showImage}
+            onClickItem={handleShowImage}
             key={`col--${count}`}
           />
         )
@@ -313,6 +91,25 @@ export const Mosaic = () => {
     return columnsArray.length !== 0 ? columnsArray : null
   }
 
+  useLayoutEffect(() => {
+    addColumns(mosaic.current.offsetWidth)
+  }, [newImages])
+
+  useLayoutEffect(() => {
+    const resizeObserver = new window.ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentBoxSize) {
+          const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize
+          addColumns(contentBoxSize.inlineSize, false)
+        } else {
+          addColumns(entry.contentRect.width, false)
+        }
+      }
+    })
+
+    resizeObserver.observe(mosaic.current)
+  }, [])
+
   return (
     <div className={`Mosaic Mosaic--cols_${columns.size}`} ref={mosaic}>
       {
@@ -320,12 +117,12 @@ export const Mosaic = () => {
       }
       <Modal open={modal.open} toClose={() => setModal({ open: false, childrenProps: null })}>
         <ImagePost
-          url={modal.childrenProps?.url ?? modal.childrenProps?.source}
-          source={modal.childrenProps?.source}
+          url={modal.childrenProps?.url ?? modal.childrenProps?.src?.original}
+          source={modal.childrenProps?.src?.original}
           alt={modal.childrenProps?.alt}
           width={modal.childrenProps?.width}
           height={modal.childrenProps?.height}
-          photographer={{ name: 'Photographer', url: '/' }}
+          photographer={{ name: modal.childrenProps?.photographer, url: modal.childrenProps?.photographer_url }}
         />
       </Modal>
     </div>

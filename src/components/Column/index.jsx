@@ -4,14 +4,14 @@ export const Column = ({ items, colNumber, onClickItem }) => {
   return (
     <div className={`Column Column--${colNumber}`}>
     {
-      items.map(({ id, source, alt }) => (
+      items.map(({ id, src, alt }) => (
         <figure
           className='Column-item'
-          onClick={() => onClickItem(id)}
+          onClick={() => onClickItem(id, colNumber)}
           key={`item--${id}`}
         >
           <figcaption>{alt}</figcaption>
-          <img src={source} alt={alt} />
+          <img src={src.medium} alt={alt} loading='lazy' />
         </figure>
       ))
     }
