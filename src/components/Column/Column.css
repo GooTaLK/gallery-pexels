@@ -3,9 +3,11 @@
 }
 
 .Column figure {
+  min-height: 200px;
   margin: 0;
   margin-bottom: 1em;
   background-color: var(--black-gray);
+  color: var(--white-gray);
   border-radius: 6px;
   overflow: hidden;
   position: relative;
@@ -14,7 +16,6 @@
 
 .Column figcaption {
   font-size: 13px;
-  color: var(--white-gray);
   position: absolute;
   bottom: 0;
   display: flex;
