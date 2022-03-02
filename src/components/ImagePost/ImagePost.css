@@ -23,6 +23,7 @@
 
 .ImagePost-info {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   flex-grow: 1;
   padding: 10px 30px;
