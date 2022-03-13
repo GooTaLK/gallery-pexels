@@ -11,18 +11,18 @@
   }
 }
 
-.Mosaic--cols_1 {
+.Mosaic[data-columns-quantity='1'] {
   --cols-number: 1;
 }
 
-.Mosaic--cols_2 {
+.Mosaic[data-columns-quantity='2'] {
   --cols-number: 2;
 }
 
-.Mosaic--cols_3 {
+.Mosaic[data-columns-quantity='3'] {
   --cols-number: 3;
 }
 
-.Mosaic--cols_4 {
+.Mosaic[data-columns-quantity='4'] {
   --cols-number: 4;
 }

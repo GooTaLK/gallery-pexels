@@ -1,13 +1,13 @@
 import './Column.css'
 
-export const Column = ({ items, colNumber, onClickItem }) => {
+export const Column = ({ items, onClickItem }) => {
   return (
-    <div className={`Column Column--${colNumber}`}>
+    <div className='Column'>
     {
       items.map(({ id, src, alt }) => (
         <figure
           className='Column-item'
-          onClick={() => onClickItem(id, colNumber)}
+          onClick={() => onClickItem(id)}
           key={`item--${id}`}
         >
           <figcaption>{alt}</figcaption>
