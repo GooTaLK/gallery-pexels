@@ -4,7 +4,7 @@ import pexelsSrc from '../../assets/pexels-icon.svg'
 
 export const Header = () => {
   return (
-    <header className='Header'>
+    <header className='Header App-Header'>
       <div className='Header-logo'>
         <h1>Gallery</h1>
       </div>

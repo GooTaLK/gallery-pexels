@@ -1,0 +1,14 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.App-Header {
+  flex-shrink: 0;
+}
+
+.App-main {
+  flex-grow: 1;
+  overflow-y: auto;
+}
