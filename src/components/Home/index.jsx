@@ -1,50 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { usePexelsData } from '../../hooks/usePexelsData'
 
 import { Mosaic } from '../Mosaic'
 
 import { getCuratedPhotos } from '../../pexelsAPI'
 
 export const Home = () => {
-  const [curatedPhotos, setCuratedPhotos] = useState({
-    photos: [],
-    page: 0,
-    completed: false
-  })
-  const [photosLoading, setPhotosLoading] = useState(false)
-
-  function updateCuratedPhotos () {
-    const page = curatedPhotos.page + 1
-
-    setPhotosLoading(true)
-
-    getCuratedPhotos({ page })
-      .then(({ photos, next_page: nextPage }) => {
-        setCuratedPhotos({
-          completed: nextPage === undefined,
-          photos: [...curatedPhotos.photos, ...photos],
-          page
-        })
-      })
-      .finally(() => setPhotosLoading(false))
-  }
+  const {
+    data: photos,
+    loading: photosLoading,
+    updateData: updatePhotos
+  } = usePexelsData({ promisseCB: async (page) => await getCuratedPhotos({ page }) })
 
   function handleMainScroll (e) {
-    if (curatedPhotos.completed) return
+    if (photos.completed || photosLoading) return
 
-    const scrollPointToUpdate = e.target.scrollHeight - (e.target.clientHeight * 4)
-    if (e.target.scrollTop >= scrollPointToUpdate && !photosLoading) {
-      updateCuratedPhotos()
-      console.log('scroll exec')
-    }
+    const EXTRA_CLIENT_HEIGHT = 3
+    if (e.target.scrollTop < e.target.scrollHeight - (e.target.clientHeight * (1 + EXTRA_CLIENT_HEIGHT))) return
+
+    updatePhotos()
   }
 
   useEffect(() => {
-    updateCuratedPhotos()
+    updatePhotos()
   }, [])
 
   return (
     <main className='App-main' onScroll={handleMainScroll} >
-      <Mosaic images={curatedPhotos.photos} />
+      <Mosaic images={photos.data} />
     </main>
   )
 }
