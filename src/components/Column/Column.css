@@ -3,7 +3,7 @@
 }
 
 .Column figure {
-  min-height: 200px;
+  min-height: 150px;
   margin: 0;
   margin-bottom: 1em;
   background-color: var(--black-gray);
