@@ -4,6 +4,7 @@ import './App.css'
 
 import { Header } from './components/Header'
 import { Home } from './components/Home'
+import { Photo } from './components/Photo'
 import { Search } from './components/Search'
 
 function App () {
@@ -13,6 +14,7 @@ function App () {
 
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/photo/:id' element={<Photo />} />
         <Route path='/search/:query' element={<Search />} />
       </Routes>
     </div>
