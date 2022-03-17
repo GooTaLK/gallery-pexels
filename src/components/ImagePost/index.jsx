@@ -1,15 +1,23 @@
+import { Link } from 'react-router-dom'
+
 import './ImagePost.css'
 
 export const ImagePost = ({
+  redirect = false,
   url,
   source,
   alt,
+  id,
   photographer = { name: '', url: '' }
 }) => {
   return (
     <article className="ImagePost">
       <section className="ImagePost-image">
-        <img src={source} alt={alt} />
+        {
+          redirect
+            ? <Link to={`/photo/${id}`} ><img src={source} alt={alt} /></Link>
+            : <img src={source} alt={alt} />
+        }
       </section>
       <section className="ImagePost-info">
         <div className='ImagePost-info-title'>

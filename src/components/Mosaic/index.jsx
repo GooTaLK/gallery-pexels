@@ -106,12 +106,15 @@ export const Mosaic = ({ images }) => {
       }
       <Modal open={modal.open} toClose={() => setModal({ open: false, childrenProps: null })}>
         <ImagePost
-          url={modal.childrenProps?.url ?? modal.childrenProps?.src?.original}
+          redirect={true}
+          url={modal.childrenProps?.url}
           source={modal.childrenProps?.src?.original}
           alt={modal.childrenProps?.alt}
-          width={modal.childrenProps?.width}
-          height={modal.childrenProps?.height}
-          photographer={{ name: modal.childrenProps?.photographer, url: modal.childrenProps?.photographer_url }}
+          id={modal.childrenProps?.id}
+          photographer={{
+            name: modal.childrenProps?.photographer,
+            url: modal.childrenProps?.photographer_url
+          }}
         />
       </Modal>
     </div>
