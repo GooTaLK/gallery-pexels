@@ -97,6 +97,8 @@ export const Mosaic = ({ images }) => {
     })
 
     resizeObserver.observe(mosaic.current)
+
+    return () => resizeObserver.disconnect()
   }, [])
 
   return (
