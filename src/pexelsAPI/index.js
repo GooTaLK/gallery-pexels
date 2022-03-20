@@ -16,7 +16,7 @@ export async function getCuratedPhotos ({ page = 1, perPage = 80 } = {}) {
 }
 
 export async function searchPhotos ({ query, page = 1, perPage = 80 }) {
-  return await fetchPexelsAPI(`https://api.pexels.com/v1/search?query=${query}&page=${page}per_page=${perPage}`)
+  return await fetchPexelsAPI(`https://api.pexels.com/v1/search?query=${query}&page=${page}&per_page=${perPage}`)
 }
 
 export async function getPhoto ({ id }) {
