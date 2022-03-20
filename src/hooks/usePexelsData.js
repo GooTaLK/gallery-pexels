@@ -1,27 +1,37 @@
 import { useState } from 'react'
 
+const initialData = {
+  data: [],
+  page: 0,
+  completed: false
+}
+
+let data = initialData
+
 export function usePexelsData ({ dataType = 'photos', promisseCB }) {
-  const [savedData, setData] = useState({
-    data: [],
-    page: 0,
-    completed: false
-  })
+  const [savedData, setSavedData] = useState(initialData)
   const [loading, setLoading] = useState(false)
 
   async function updateData () {
-    const page = savedData.page + 1
+    const page = data.page + 1
 
     setLoading(true)
 
-    const { [dataType]: data, next_page: nextPage } = await promisseCB(page)
-
-    setData({
+    const { [dataType]: promisseData, next_page: nextPage } = await promisseCB(page)
+    const newData = {
       completed: nextPage === undefined,
-      data: [...savedData.data, ...data],
+      data: [...data.data, ...promisseData],
       page
-    })
+    }
+    data = newData
+    setSavedData(newData)
     setLoading(false)
   }
 
-  return { data: savedData, loading, updateData }
+  function resetData () {
+    data = initialData
+    setSavedData(initialData)
+  }
+
+  return { data: savedData, loading, updateData, resetData }
 }
