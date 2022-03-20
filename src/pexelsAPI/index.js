@@ -1,4 +1,4 @@
-const API_KEY = ''
+const API_KEY = '563492ad6f917000010000016f3eeebdb1f346ec9076c3b9d5a4c7c0'
 
 async function fetchPexelsAPI (url) {
   try {
