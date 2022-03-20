@@ -7,6 +7,7 @@ async function fetchPexelsAPI (url) {
     )
     return await response.json()
   } catch (error) {
+    console.log('An error fetching Pexels appear')
     console.error(error)
   }
 }
