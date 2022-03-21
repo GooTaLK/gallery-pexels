@@ -22,6 +22,11 @@
   }
 }
 
+.Header-logo h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .Header-search_wrapper {
   flex-grow: 1;
   text-align: center;

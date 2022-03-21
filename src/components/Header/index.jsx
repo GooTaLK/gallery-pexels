@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import './Header.css'
 
@@ -9,6 +9,10 @@ export const Header = () => {
   const [searchValue, setSearchValue] = useState('')
 
   const navigate = useNavigate()
+
+  function handleLogoClick () {
+    setSearchValue('')
+  }
 
   function handleSearchValue (e) {
     setSearchValue(e.target.value)
@@ -24,7 +28,7 @@ export const Header = () => {
   return (
     <header className='Header App-Header'>
       <div className='Header-logo'>
-        <h1>Gallery</h1>
+        <h1><Link to ='/' onClick={handleLogoClick}>Gallery</Link></h1>
       </div>
       <div className='Header-search_wrapper'>
         <input
