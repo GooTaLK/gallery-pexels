@@ -15,7 +15,12 @@ export const Gallery = ({ promisseCB }) => {
     if (media.completed || photosLoading) return
 
     const EXTRA_CLIENT_HEIGHT = 3
-    if (e.target.scrollTop < e.target.scrollHeight - (e.target.clientHeight * (1 + EXTRA_CLIENT_HEIGHT))) return
+    if (
+      e.target.scrollTop < Math.max(
+        e.target.clientHeight,
+        e.target.scrollHeight - (e.target.clientHeight * (1 + EXTRA_CLIENT_HEIGHT))
+      )
+    ) return
 
     updatePhotos()
   }
