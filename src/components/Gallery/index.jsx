@@ -7,7 +7,8 @@ export const Gallery = ({ promisseCB }) => {
   const {
     data: media,
     loading: photosLoading,
-    updateData: updatePhotos
+    updateData: updatePhotos,
+    resetData
   } = usePexelsData({ promisseCB })
 
   function handleMainScroll (e) {
@@ -21,7 +22,9 @@ export const Gallery = ({ promisseCB }) => {
 
   useEffect(() => {
     updatePhotos()
-  }, [])
+
+    return () => resetData()
+  }, [promisseCB])
 
   return (
     <main className='App-main' onScroll={handleMainScroll} >
