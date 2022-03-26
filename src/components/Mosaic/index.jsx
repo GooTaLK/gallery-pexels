@@ -107,17 +107,19 @@ export const Mosaic = ({ images }) => {
         getColumns()
       }
       <Modal open={modal.open} toClose={() => setModal({ open: false, childrenProps: null })}>
-        <ImagePost
-          redirect={true}
-          url={modal.childrenProps?.url}
-          source={modal.childrenProps?.src?.original}
-          alt={modal.childrenProps?.alt}
-          id={modal.childrenProps?.id}
-          photographer={{
-            name: modal.childrenProps?.photographer,
-            url: modal.childrenProps?.photographer_url
-          }}
-        />
+        <div className="Mosaic-ImagePost_wrapper">
+          <ImagePost
+            redirect={true}
+            url={modal.childrenProps?.url}
+            source={modal.childrenProps?.src?.original}
+            alt={modal.childrenProps?.alt}
+            id={modal.childrenProps?.id}
+            photographer={{
+              name: modal.childrenProps?.photographer,
+              url: modal.childrenProps?.photographer_url
+            }}
+          />
+        </div>
       </Modal>
     </div>
   )
