@@ -11,15 +11,15 @@ export const ImagePost = ({
   photographer = { name: '', url: '' }
 }) => {
   return (
-    <article className="ImagePost">
-      <section className="ImagePost-image">
+    <article className='ImagePost'>
+      <section className='ImagePost-image'>
         {
           redirect
             ? <Link to={`/photo/${id}`} ><img src={source} alt={alt} /></Link>
             : <img src={source} alt={alt} />
         }
       </section>
-      <section className="ImagePost-info">
+      <section className='ImagePost-info'>
         <div className='ImagePost-info-title'>
           <span>
             <a
