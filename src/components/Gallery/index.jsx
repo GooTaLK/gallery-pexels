@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { usePexelsData } from '../../hooks/usePexelsData'
 
 import { Mosaic } from '../Mosaic'
