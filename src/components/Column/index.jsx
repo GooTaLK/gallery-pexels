@@ -13,7 +13,7 @@ export const Column = ({ items, onClickItem }) => {
           <figure
             className='Column-item'
             onClick={() => onClickItem(id)}
-            key={`item--${id}`}
+            key={`${id}--${alt}`}
           >
             <figcaption>{alt}</figcaption>
             <img src={src.medium} alt={alt} loading='lazy' />
