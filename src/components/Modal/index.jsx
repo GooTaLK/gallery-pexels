@@ -15,17 +15,6 @@ export const Modal = ({ open = false, toClose, children }) => {
     modal.current.focus()
   }, [open])
 
-  useEffect(() => {
-    function disableBackButton (e) {
-      e.preventDefault()
-      toClose()
-    }
-
-    document.addEventListener('backButton', disableBackButton)
-
-    return () => document.removeEventListener('backButton', disableBackButton)
-  })
-
   return (
     <>
       <div className='Modal-overlay' onClick={toClose}/>
