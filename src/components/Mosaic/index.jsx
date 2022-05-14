@@ -4,7 +4,7 @@ import './Mosaic.css'
 
 import { Column } from '../Column'
 import { Modal } from '../Modal'
-import { ImagePost } from '../ImagePost'
+import { ImagePostModal } from '../ImagePostModal'
 
 const screen = {
   LONG: 1040,
@@ -88,7 +88,9 @@ export const Mosaic = ({ images }) => {
     const resizeObserver = new window.ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.contentBoxSize) {
-          const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize
+          const contentBoxSize = Array.isArray(entry.contentBoxSize)
+            ? entry.contentBoxSize[0]
+            : entry.contentBoxSize
           loadColumns({ width: contentBoxSize.inlineSize })
         } else {
           loadColumns({ width: entry.contentRect.width })
@@ -103,23 +105,12 @@ export const Mosaic = ({ images }) => {
 
   return (
     <div className='Mosaic' data-columns-quantity={columns.size} ref={mosaic}>
-      {
-        getColumns()
-      }
-      <Modal open={modal.open} toClose={() => setModal({ open: false, childrenProps: null })}>
-        <div className="Mosaic-ImagePost_wrapper">
-          <ImagePost
-            redirect={true}
-            url={modal.childrenProps?.url}
-            source={modal.childrenProps?.src?.original}
-            alt={modal.childrenProps?.alt}
-            id={modal.childrenProps?.id}
-            photographer={{
-              name: modal.childrenProps?.photographer,
-              url: modal.childrenProps?.photographer_url
-            }}
-          />
-        </div>
+      {getColumns()}
+      <Modal
+        open={modal.open}
+        toClose={() => setModal({ open: false, childrenProps: null })}
+      >
+        <ImagePostModal {...modal.childrenProps}/>
       </Modal>
     </div>
   )

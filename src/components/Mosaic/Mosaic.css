@@ -26,15 +26,3 @@
 .Mosaic[data-columns-quantity='4'] {
   --cols-number: 4;
 }
-
-.Mosaic-ImagePost_wrapper {
-  width: max(320px, 90vw);
-  height: 90vh;
-  overflow: auto;
-}
-
-@media (min-width: 560px) {
-  .Mosaic-ImagePost_wrapper {
-    border-radius: 8px;
-  }
-}
