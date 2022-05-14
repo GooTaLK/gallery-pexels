@@ -1,12 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 import './Mosaic.css'
 
 import { Column } from '../Column'
 import { Modal } from '../Modal'
 import { ImagePostModal } from '../ImagePostModal'
-
-import { useLocation, useNavigate } from 'react-router-dom'
 
 const screen = {
   LONG: 1040,
@@ -51,9 +49,6 @@ export const Mosaic = ({ images }) => {
   const [modal, setModal] = useState({ open: false })
   const [postProps, setPostProps] = useState(null)
 
-  const location = useLocation()
-  const navigate = useNavigate()
-
   loadColumns = ({ width, hasNewImages = false }) => {
     const columnsNumber = getColumnsNumber(width)
     if (!hasNewImages && columnsNumber === columns.size) return
@@ -67,13 +62,13 @@ export const Mosaic = ({ images }) => {
   function handleOpenModal (id) {
     const imagePostProps = images.find(({ id: imageId }) => id === imageId)
 
-    navigate({ hash: 'preview' })
+    setModal({ open: true })
     setPostProps(imagePostProps)
   }
 
   function handleCloseModal () {
+    setModal({ open: false })
     setPostProps({})
-    navigate({ hash: '' })
   }
 
   function getColumns () {
@@ -115,16 +110,6 @@ export const Mosaic = ({ images }) => {
 
     return () => resizeObserver.disconnect()
   }, [])
-
-  useEffect(() => {
-    if (postProps === null) return
-
-    if (location.hash === '#preview') {
-      setModal({ open: true })
-    } else {
-      setModal({ open: false })
-    }
-  }, [location])
 
   return (
     <div className='Mosaic' data-columns-quantity={columns.size} ref={mosaic}>
