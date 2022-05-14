@@ -1,10 +1,12 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import './Mosaic.css'
 
 import { Column } from '../Column'
 import { Modal } from '../Modal'
 import { ImagePostModal } from '../ImagePostModal'
+
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const screen = {
   LONG: 1040,
@@ -46,7 +48,11 @@ export const Mosaic = ({ images }) => {
   const mosaic = useRef()
 
   const [columns, setColumns] = useState({ size: 0 })
-  const [modal, setModal] = useState({ open: false, childrenProps: {} })
+  const [modal, setModal] = useState({ open: false })
+  const [postProps, setPostProps] = useState(null)
+
+  const location = useLocation()
+  const navigate = useNavigate()
 
   loadColumns = ({ width, hasNewImages = false }) => {
     const columnsNumber = getColumnsNumber(width)
@@ -58,9 +64,16 @@ export const Mosaic = ({ images }) => {
     })
   }
 
-  function handleShowImage (id) {
-    const childrenProps = images.find(({ id: imageId }) => id === imageId)
-    setModal({ childrenProps, open: true })
+  function handleOpenModal (id) {
+    const imagePostProps = images.find(({ id: imageId }) => id === imageId)
+
+    navigate({ hash: 'preview' })
+    setPostProps(imagePostProps)
+  }
+
+  function handleCloseModal () {
+    setPostProps({})
+    navigate({ hash: '' })
   }
 
   function getColumns () {
@@ -71,7 +84,7 @@ export const Mosaic = ({ images }) => {
       return (
         <Column
           items={columns[name]}
-          onClickItem={handleShowImage}
+          onClickItem={handleOpenModal}
           key={`col--${index + 1}`}
         />
       )
@@ -103,14 +116,24 @@ export const Mosaic = ({ images }) => {
     return () => resizeObserver.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (postProps === null) return
+
+    if (location.hash === '#preview') {
+      setModal({ open: true })
+    } else {
+      setModal({ open: false })
+    }
+  }, [location])
+
   return (
     <div className='Mosaic' data-columns-quantity={columns.size} ref={mosaic}>
       {getColumns()}
       <Modal
         open={modal.open}
-        toClose={() => setModal({ open: false, childrenProps: null })}
+        toClose={handleCloseModal}
       >
-        <ImagePostModal {...modal.childrenProps}/>
+        <ImagePostModal {...postProps}/>
       </Modal>
     </div>
   )
