@@ -5,6 +5,8 @@ import { ImagePost } from '../ImagePost'
 
 import { getPhoto } from '../../pexelsAPI'
 
+const ALT_TEXT = 'Photo provided by Pexels'
+
 export const Photo = () => {
   const [photo, setPhoto] = useState(null)
 
@@ -23,7 +25,7 @@ export const Photo = () => {
     <ImagePost
       url={photo.url}
       source={photo.src.original}
-      alt={photo.alt}
+      alt={photo.alt || ALT_TEXT}
       id={photo.id}
       photographer={{
         name: photo.photographer,
