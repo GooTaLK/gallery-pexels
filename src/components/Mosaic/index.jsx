@@ -118,7 +118,7 @@ export const Mosaic = ({ images }) => {
         open={modal.open}
         toClose={handleCloseModal}
       >
-        <ImagePostModal {...postProps}/>
+        <ImagePostModal topButtonAction={handleCloseModal} {...postProps}/>
       </Modal>
     </div>
   )
