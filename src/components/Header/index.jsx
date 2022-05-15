@@ -22,7 +22,10 @@ export const Header = () => {
     if (e.key !== 'Enter') return
 
     const query = e.target.value
-    query !== '' && navigate(`/search/${query}`)
+    if (query !== '') {
+      e.target.blur()
+      navigate(`/search/${query}`)
+    }
   }
 
   function handleSearchIconClick () {
