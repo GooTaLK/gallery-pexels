@@ -47,7 +47,7 @@ export const Mosaic = ({ images }) => {
 
   const mosaic = useRef()
 
-  const [columns, setColumns] = useState({ size: 0 })
+  const [columns, setColumns] = useState({ columns: {}, size: 0 })
   const [modal, setModal] = useState({ open: false })
   const [postProps, setPostProps] = useState(null)
 
@@ -56,7 +56,7 @@ export const Mosaic = ({ images }) => {
     if (!hasNewImages && columnsNumber === columns.size) return
 
     setColumns({
-      ...loadImages({ images, columnsNumber }),
+      columns: loadImages({ images, columnsNumber }),
       size: columnsNumber
     })
   }
@@ -76,11 +76,11 @@ export const Mosaic = ({ images }) => {
   function getColumns () {
     if (columns.size === 0) return null
 
-    const columnsNames = Object.keys(columns).filter((name) => name !== 'size')
+    const columnsNames = Object.keys(columns.columns)
     const columnsArray = columnsNames.map((name, index) => {
       return (
         <Column
-          items={columns[name]}
+          items={columns.columns[name]}
           onClickItem={handleOpenModal}
           key={`col--${index + 1}`}
         />
