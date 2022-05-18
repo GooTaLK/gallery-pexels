@@ -14,7 +14,7 @@ export const Gallery = ({ promisseCB }) => {
   function handleMainScroll (e) {
     if (media.completed || photosLoading) return
 
-    const EXTRA_CLIENT_HEIGHT = 3
+    const EXTRA_CLIENT_HEIGHT = 3.5
     if (
       e.target.scrollTop < Math.max(
         e.target.clientHeight,
