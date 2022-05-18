@@ -6,6 +6,8 @@ import { Column } from '../Column'
 import { Modal } from '../Modal'
 import { ImagePostModal } from '../ImagePostModal'
 
+import { useResizeObserver } from '../../hooks/useResizeObsever'
+
 const screen = {
   LONG: 1040,
   SMALL: 560,
@@ -92,24 +94,13 @@ export const Mosaic = ({ images }) => {
     loadColumns({ width: mosaic.current.offsetWidth, hasNewImages: true })
   }, [images])
 
-  useLayoutEffect(() => {
-    const resizeObserver = new window.ResizeObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.contentBoxSize) {
-          const contentBoxSize = Array.isArray(entry.contentBoxSize)
-            ? entry.contentBoxSize[0]
-            : entry.contentBoxSize
-          loadColumns({ width: contentBoxSize.inlineSize })
-        } else {
-          loadColumns({ width: entry.contentRect.width })
-        }
-      }
-    })
-
-    resizeObserver.observe(mosaic.current)
-
-    return () => resizeObserver.disconnect()
-  }, [])
+  useResizeObserver(({ inlineSize, width }) => {
+    if (inlineSize) {
+      loadColumns({ width: inlineSize })
+    } else {
+      loadColumns({ width })
+    }
+  }, mosaic)
 
   return (
     <div className='Mosaic' data-columns-quantity={columns.size} ref={mosaic}>
